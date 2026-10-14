@@ -88,14 +88,15 @@ Cloudflare publishes it automatically. To undo a bad change, open Cloudflare →
 3. The site appears at `https://YOUR-USERNAME.github.io/etambuyu-katota/`.
    If the GitHub username is `etambuyukatota` and the repository is named `etambuyukatota.github.io`, the address becomes `https://etambuyukatota.github.io`.
 
-## 4. After the site is live (do these once)
+## 4. Where the site lives now
 
-1. **Social preview:** in `index.html`, change `content="assets/img/social-preview.png"` to the full address, for example
-   `content="https://etambuyu-katota.pages.dev/assets/img/social-preview.png"`, and add this line under it:
-   `<link rel="canonical" href="https://etambuyu-katota.pages.dev/">`
-2. **QR code and CV:** the CV's QR code currently points to the old Folitox page. Make a new QR code for the new address and update the CV PDF in `assets/docs/`.
-3. **Videos:** in Google Drive, set each video to **Share → General access → Anyone with the link**, and test each "Watch video" button in a private browser window.
-4. **Google:** optionally add the site to [Google Search Console](https://search.google.com/search-console) (free) so it shows up in searches.
+- **Live address:** https://etambuyukatota.github.io
+- **Host:** GitHub Pages, repository `etambuyukatota/etambuyukatota.github.io`, branch `main`, folder `/ (root)`.
+- **To update without Git:** on GitHub, open the folder that holds the file (for example `assets/docs`), click
+  **Add file → Upload files**, drag in the new file with the *same name*, and click **Commit changes**.
+  The live site updates within about a minute.
+- **Already done:** link-preview tags and canonical address in `index.html`, and the CV QR code points here.
+- **Still to check:** each Google Drive video is shared as *Anyone with the link* (test in a private window).
 
 ## 5. Later: your own domain (optional, paid)
 

@@ -587,6 +587,88 @@ cite { font-style: italic; }
 }
 
 /* =========================================================
+   Phones and tablets: header scrolls away, menu strip stays
+   pinned to the top (main.js sets --profile-top and --nav-h).
+   ========================================================= */
+@media (max-width: 63.99em) {
+  .profile__inner { padding-bottom: 0; }
+
+  .js .profile {
+    position: sticky;
+    top: var(--profile-top, 0px);
+    z-index: 20;
+    transition: box-shadow 0.2s ease;
+  }
+  .js .profile.is-stuck { box-shadow: 0 8px 18px -12px rgba(21, 42, 70, 0.55); }
+
+  /* Sections have 2rem of padding above their heading, so this lands each
+     heading about 1.25rem below the pinned menu. */
+  .section { scroll-margin-top: calc(var(--nav-h, 0px) - var(--space-3)); }
+  .section:first-child { scroll-margin-top: calc(var(--nav-h, 0px) + var(--space-5)); }
+
+  .profile__nav { position: relative; }
+  .profile__nav ul {
+    position: relative;
+    padding-block: var(--space-2);
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+  .profile__nav a {
+    display: flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0 0.9rem;
+  }
+  .profile__nav li:last-child { padding-right: var(--space-2); }
+
+  /* Fades at the edges hint that the menu slides sideways. */
+  .profile__nav::before,
+  .profile__nav::after {
+    content: "";
+    position: absolute;
+    top: 1px;
+    bottom: 0;
+    width: 2.25rem;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+  .profile__nav::before { left: 0; background: linear-gradient(to right, var(--mist) 20%, rgba(238, 242, 246, 0)); }
+  .profile__nav::after { right: 0; background: linear-gradient(to left, var(--mist) 20%, rgba(238, 242, 246, 0)); }
+  .profile__nav.can-left::before,
+  .profile__nav.can-right::after { opacity: 1; }
+}
+
+/* Phones: document covers sit beside their text, one per row. */
+@media (max-width: 39.99em) {
+  .profile__inner { grid-template-columns: 4.75rem 1fr; padding-top: var(--space-4); gap: var(--space-3) var(--space-4); }
+  .profile__photo { width: 4.75rem; height: 4.75rem; }
+  .profile__name { font-size: var(--step-2); }
+  .profile__role { font-size: 1rem; }
+  .profile__actions .btn { flex: 1 1 0; padding-inline: var(--space-3); }
+
+  .content { padding-top: var(--space-5); }
+
+  .shelf { grid-template-columns: minmax(0, 1fr); gap: var(--space-5); }
+  .doc {
+    position: relative;
+    min-height: 8rem;
+    padding-left: 6.75rem;
+  }
+  .doc__link { gap: 0; }
+  .doc__cover {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 5.75rem;
+  }
+  .doc + .doc { padding-top: var(--space-5); border-top: 1px solid var(--rule); }
+  .doc + .doc .doc__cover { top: var(--space-5); }
+  .doc + .doc { min-height: calc(8rem + var(--space-5)); }
+}
+
+/* =========================================================
    Desktop: fixed profile panel on the left
    ========================================================= */
 @media (min-width: 64em) {
